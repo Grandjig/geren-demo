@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEREN | AI Portfolio Optimizer for African Markets</title>
+    <meta name="description" content="A self-improving AI optimization engine for African frontier markets. +83% Sharpe improvement over classical methods.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #0B4F3E;
+            --primary-light: #10B981;
+            --accent: #D4AF37;
+            --bg: #FAFBFC;
+            --bg-dark: #0A0A0F;
+            --card: #FFFFFF;
+            --text: #1A1A2E;
+            --text-light: #6B7280;
+            --border: #E5E7EB;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* NAV */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 16px 0;
+        }
+        
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0D1F1A 100%);
+            padding: 120px 24px 80px;
+        }
+        
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--primary-light);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        
+        .hero h1 span {
+            color: var(--primary-light);
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+        
+        .hero-stat {
+            text-align: left;
+        }
+        
+        .hero-stat-value {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary-light);
+        }
+        
+        .hero-stat-label {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--primary-light);
+            color: var(--bg-dark);
+        }
+        
+        .btn-primary:hover {
+            background: #0D9668;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .btn-secondary:hover {
+            border-color: white;
+            background: rgba(255,255,255,0.05);
+        }
+        
+        /* SECTIONS */
+        section {
+            padding: 100px 24px;
+        }
+        
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+        
+        .section-title {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        
+        .section-desc {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin-bottom: 48px;
+        }
+        
+        /* PROBLEM/SOLUTION */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+        
+        @media (max-width: 768px) {
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .problem-card {
+            padding: 40px;
+            border-radius: 16px;
+        }
+        
+        .problem-card.problem {
+            background: #FEF3C7;
+            border: 2px solid #F59E0B;
+        }
+        
+        .problem-card.solution {
+            background: #D1FAE5;
+            border: 2px solid var(--primary-light);
+        }
+        
+        .problem-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .problem-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .problem-card li {
+            padding: 8px 0;
+            padding-left: 28px;
+            position: relative;
+            font-size: 15px;
+        }
+        
+        .problem-card.problem li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: #DC2626;
+            font-weight: 700;
+        }
+        
+        .problem-card.solution li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        /* RESULTS */
+        .results-section {
+            background: var(--bg-dark);
+            color: white;
+        }
+        
+        .results-section .section-label {
+            color: var(--primary-light);
+        }
+        
+        .results-section .section-desc {
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 48px;
+        }
+        
+        .results-table th,
+        .results-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .results-table th {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .results-table td {
+            font-size: 15px;
+        }
+        
+        .results-table tr:last-child {
+            background: rgba(16, 185, 129, 0.15);
+        }
+        
+        .results-table tr:last-child td {
+            font-weight: 700;
+            color: var(--primary-light);
+        }
+        
+        .highlight {
+            color: var(--primary-light);
+            font-weight: 700;
+        }
+        
+        /* STRESS TEST */
+        .stress-highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, #0D6B52 100%);
+            border-radius: 16px;
+            padding: 40px;
+            color: white;
+        }
+        
+        .stress-highlight h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .stress-highlight .big-stat {
+            font-size: 64px;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+        
+        .stress-highlight p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.7);
+            margin-top: 16px;
+        }
+        
+        /* HOW IT WORKS */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        
+        .step {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        
+        .step h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .step p {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        /* TECH STACK */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
+        
+        .tech-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+        
+        .tech-item h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .tech-item p {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+        
+        /* CTA */
+        .cta-section {
+            background: var(--primary);
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-section .section-title {
+            color: white;
+        }
+        
+        .cta-section .section-desc {
+            color: rgba(255,255,255,0.8);
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: var(--bg-dark);
+            color: rgba(255,255,255,0.6);
+            padding: 48px 24px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 24px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-copy {
+            font-size: 13px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-stats {
+                gap: 32px;
+            }
+            
+            .hero-stat-value {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">GEREN</a>
+            <div class="nav-links">
+                <a href="#problem">Problem</a>
+                <a href="#results">Results</a>
+                <a href="#how">How It Works</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-inner">
+            <span class="hero-badge">AI + Finance + Africa</span>
+            <h1>Self-Improving<br><span>Portfolio Optimizer</span></h1>
+            <p class="hero-subtitle">
+                An AI-powered optimization engine for African frontier markets. 
+                Beats classical methods by 83%. Survives currency crises. 
+                Documents every decision.
+            </p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">+83%</div>
+                    <div class="hero-stat-label">vs Classical SOTA</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">6/6</div>
+                    <div class="hero-stat-label">Stress Tests Won</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">1.65</div>
+                    <div class="hero-stat-label">Sharpe Ratio</div>
+                </div>
+            </div>
+            
+            <div class="hero-buttons">
+                <a href="geren_dashboard.html" class="btn btn-primary">
+                    View Live Demo →
+                </a>
+                <a href="#results" class="btn btn-secondary">
+                    See Results
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- PROBLEM/SOLUTION -->
+    <section id="problem">
+        <div class="section-inner">
+            <span class="section-label">The Challenge</span>
+            <h2 class="section-title">African Markets Are Ignored</h2>
+            <p class="section-desc">
+                Global quantitative systems don't model African markets. 
+                Classical optimization methods fail because they assume stable currencies 
+                and predictable policy environments.
+            </p>
+            
+            <div class="problem-grid">
+                <div class="problem-card problem">
+                    <h3>The Problem</h3>
+                    <ul>
+                        <li>No coverage from global quant funds</li>
+                        <li>Classical methods miss naira cycles, CBN policy, election risk</li>
+                        <li>20% currency devaluation destroys returns</li>
+                        <li>Generic models trained on NYSE, not NGX</li>
+                        <li>No self-improvement — set once, degrade forever</li>
+                    </ul>
+                </div>
+                
+                <div class="problem-card solution">
+                    <h3>GEREN's Solution</h3>
+                    <ul>
+                        <li>Built for African market dynamics</li>
+                        <li>Nigerian macro signals: oil, currency, politics</li>
+                        <li>Natural hedges protect against naira weakness</li>
+                        <li>Self-improving: gets better with every cycle</li>
+                        <li>Full audit trail for every decision</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- RESULTS -->
+    <section id="results" class="results-section">
+        <div class="section-inner">
+            <span class="section-label">Performance</span>
+            <h2 class="section-title">Backtest Results</h2>
+            <p class="section-desc">
+                Out-of-sample period: January 2024 – June 2025. 
+                Strict train/test separation. No lookahead bias.
+            </p>
+            
+            <div style="overflow-x: auto;">
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Sharpe</th>
+                            <th>Annual Return</th>
+                            <th>Volatility</th>
+                            <th>Max Drawdown</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Equal Weight</td>
+                            <td>0.28</td>
+                            <td>+10.1%</td>
+                            <td>13.0%</td>
+                            <td>-10.8%</td>
+                        </tr>
+                        <tr>
+                            <td>Minimum Variance</td>
+                            <td>0.52</td>
+                            <td>+11.4%</td>
+                            <td>9.4%</td>
+                            <td>-6.0%</td>
+                        </tr>
+                        <tr>
+                            <td>Mean-Variance (MVO)</td>
+                            <td>1.31</td>
+                            <td>+24.1%</td>
+                            <td>13.4%</td>
+                            <td>-8.2%</td>
+                        </tr>
+                        <tr>
+                            <td>HRP (Classical SOTA)</td>
+                            <td>0.90</td>
+                            <td>+16.0%</td>
+                            <td>10.6%</td>
+                            <td>-6.6%</td>
+                        </tr>
+                        <tr>
+                            <td>GEREN (Ours)</td>
+                            <td>1.65</td>
+                            <td>+29.4%</td>
+                            <td>13.8%</td>
+                            <td>-6.9%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="stress-highlight">
+                <h3>Stress Test: 20% Naira Devaluation</h3>
+                <div class="big-stat">+1.01</div>
+                <p>
+                    GEREN Sharpe during currency crisis. Classical HRP fell to <strong>-0.28</strong>.
+                    The system's allocation to gold and oil provides natural currency protection — 
+                    discovered by the optimizer, not hardcoded.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- HOW IT WORKS -->
+    <section id="how">
+        <div class="section-inner">
+            <span class="section-label">Architecture</span>
+            <h2 class="section-title">How GEREN Works</h2>
+            <p class="section-desc">
+                A self-improving optimization engine that combines multiple signal sources, 
+                tests hypotheses, and learns from every execution.
+            </p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Signal Intelligence</h3>
+                    <p>
+                        Combine price momentum models, technical indicators (RSI, MACD), 
+                        and Nigerian macro context (oil, currency, CBN policy, elections).
+                    </p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Asset Selection</h3>
+                    <p>
+                        Rank assets by signal-augmented Sharpe ratio. 
+                        Select top performers for the portfolio.
+                    </p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Weight Optimization</h3>
+                    <p>
+                        Use Hierarchical Risk Parity (HRP) for robust weight allocation. 
+                        No mean-variance assumptions.
+                    </p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Self-Improvement</h3>
+                    <p>
+                        AI proposes parameter changes → system tests them → 
+                        keeps improvements, rejects regressions, logs everything.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- TECH STACK -->
+    <section style="background: var(--bg);">
+        <div class="section-inner">
+            <span class="section-label">Built With</span>
+            <h2 class="section-title">Technology Stack</h2>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h4>Python</h4>
+                    <p>Core optimization engine</p>
+                </div>
+                <div class="tech-item">
+                    <h4>PyPortfolioOpt</h4>
+                    <p>HRP weight allocation</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Groq / Llama 3</h4>
+                    <p>AI reasoning layer</p>
+                </div>
+                <div class="tech-item">
+                    <h4>yfinance</h4>
+                    <p>Market data ingestion</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Chart.js</h4>
+                    <p>Dashboard visualizations</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Vanilla JS</h4>
+                    <p>Zero-dependency frontend</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section id="contact" class="cta-section">
+        <div class="section-inner" style="text-align: center;">
+            <h2 class="section-title">Let's Talk</h2>
+            <p class="section-desc">
+                Interested in the technology? Want to run a pilot? 
+                Looking for a quant engineer who builds, not just talks?
+            </p>
+            
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="mailto:tobioyewale24@gmail.com" class="btn btn-primary" style="background: white; color: var(--primary);">
+                    tobioyewale24@gmail.com
+                </a>
+                <a href="tel:+2348051695030" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.5);">
+                    +234 805 169 5030
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="geren_dashboard.html">Live Demo</a>
+            <a href="GEREN_Chapel_Hill_Denham_Report.md">Technical Report</a>
+            <a href="mailto:tobioyewale24@gmail.com">Contact</a>
+        </div>
+        <p class="footer-copy">
+            Built by Oluwatobi Emmanuel Oyewale | 2026<br>
+            <small>Backtest results are historical and do not guarantee future performance.</small>
+        </p>
+    </footer>
+</body>
+</html>
